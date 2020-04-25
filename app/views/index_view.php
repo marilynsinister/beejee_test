@@ -105,7 +105,12 @@
 				<th scope="row"><?=$item['ID']?></th>
 				<td><?=$item['USER_NAME']?></td>
 				<td><?=$item['USER_EMAIL']?></td>
-				<td><?=$item['TEXT']?></td>
+				<td>
+					<?=$item['TEXT']?>
+					<? if ($item['EDITED'] == 1): ?>
+						<br /><small><em>Отредактировано админом</em></small>
+					<? endif; ?>
+				</td>
 				<td>
 					<? if ($item['COMPLETED'] == 0): ?>
 						<span class="badge badge-pill badge-danger">Не выполнено</span>

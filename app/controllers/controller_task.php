@@ -45,7 +45,12 @@ class Controller_Task extends Controller
 					$_POST['completed'] = 0;
 
 				}
+
+				$_POST['edited'] = 0;
+				if ($task['TEXT_ORIGIN'] != $_POST['task']) $_POST['edited'] = 1;
+
 				$_POST['id'] = $id;
+
 				$success = $this->model->edit($_POST);
 
 				if ($success == '00000') {

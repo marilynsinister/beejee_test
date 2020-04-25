@@ -61,7 +61,7 @@ class Model_Task extends Model
 	}
 	public  function add($data){
 
-		$rs = $this->db->prepare("INSERT INTO `tasks` (USER_NAME, USER_EMAIL, TEXT, COMPLETED, ACTIVE) VALUES (:username, :useremail, :task, 0, 1)");
+		$rs = $this->db->prepare("INSERT INTO `tasks` (USER_NAME, USER_EMAIL, TEXT, TEXT_ORIGIN,  COMPLETED, ACTIVE) VALUES (:username, :useremail, :task, :task, 0, 1)");
 		$rs->execute([':username' => htmlspecialchars($data['username']), ':useremail' => htmlspecialchars($data['email']), ':task' => htmlspecialchars($data['task'])]);
 
 		$rs->fetch();
@@ -72,10 +72,11 @@ class Model_Task extends Model
 
 	public  function edit($data){
 
-		$rs = $this->db->prepare("UPDATE `tasks` SET TEXT = :text, COMPLETED = :completed WHERE `tasks`.`ID` = :id");
+		$rs = $this->db->prepare("UPDATE `tasks` SET TEXT = :text, COMPLETED = :completed, EDITED = :edited WHERE `tasks`.`ID` = :id");
 		$rs->bindValue(':text', htmlspecialchars($data['task']));
 		$rs->bindValue(':id', (int) $data['id'], PDO::PARAM_INT);
 		$rs->bindValue(':completed', (int) $data['completed'], PDO::PARAM_INT);
+		$rs->bindValue(':edited', (int) $data['edited'], PDO::PARAM_INT);
 		$rs->execute();
 		//$rs->fetch();
 
