@@ -10,6 +10,9 @@ class Router
 
 		$routes = explode('/', $link[0]);
 
+		foreach ($routes as $key=>$item){
+			if (empty($item)) unset($routes[$key]);
+		}
 		// получаем имя контроллера
 		if ( !empty($routes[1]) )
 		{	
@@ -21,7 +24,6 @@ class Router
 		{
 			$action_name = $routes[2];
 		}
-
 
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;
@@ -54,15 +56,20 @@ class Router
 			*/
 			Router::ErrorPage404();
 		}
-		
+
 		// создаем контроллер
 		$controller = new $controller_name;
 		$action = $action_name;
-		
+
 		if(method_exists($controller, $action))
 		{
-			// вызываем действие контроллера
-			$controller->$action();
+			if (isset($routes[3])){
+				$controller->$action($routes[3]);
+			}
+			else {
+				// вызываем действие контроллера
+				$controller->$action();
+			}
 		}
 		else
 		{

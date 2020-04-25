@@ -41,3 +41,19 @@ code {
 .h1{
 	margin: 20px 0 20px 0;
 }
+
+.c-table thead th:nth-child(1){
+	 width: 50px;
+ }
+.c-table thead th:nth-child(2){
+	width: 200px;
+}
+.c-table thead th:nth-child(3){
+	width: 200px;
+}
+.c-table thead th:nth-child(4){
+	width: 300px;
+}
+.c-table thead th:nth-child(5){
+	width: 150px;
+}

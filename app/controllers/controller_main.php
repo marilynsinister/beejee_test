@@ -23,7 +23,38 @@ class Controller_Main extends Controller
 
 		$nav_params['offset'] = ($nav_params['page'] * $nav_params['num']) - $nav_params['num']; // определяем, с какой записи нам выводить
 
-		$items = $this->model->get_list($nav_params);
+		$sort = array();
+		if (!empty($_GET['sort'])) {
+
+			switch ($_GET['sort']) {
+				case "name":
+					$field = "USER_NAME";
+					break;
+				case "email":
+					$field = "USER_EMAIL";
+					break;
+				case "status":
+					$field = "COMPLETED";
+					break;
+				default:
+					$field = "USER_NAME";
+			}
+
+			if (!empty($_GET['order']) && $_GET['order'] == 'asc'){
+				$order = "ASC";
+			}
+			else{
+				$order = "DESC";
+			}
+
+			$sort = array(
+				'field' => $field,
+				'order' => $order,
+			);
+		}
+
+
+		$items = $this->model->get_list($nav_params, $sort);
 
 		$data = array(
 			'items' => $items,

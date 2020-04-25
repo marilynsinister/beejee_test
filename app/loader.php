@@ -9,4 +9,5 @@ require_once 'main/view.php';
 require_once 'main/controller.php';
 
 require_once 'router.php';
+session_start();
 Router::start(); // запускаем маршрутизатор
