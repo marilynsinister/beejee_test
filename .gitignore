@@ -1,0 +1,10 @@
+/app/config/db.php
+
+# Ignore Logs
+logs
+*.log
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.sw*

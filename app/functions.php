@@ -3,7 +3,7 @@
 function dz($var, $die = false)
 {
 
-	if($_SERVER['REMOTE_ADDR'] == "109.238.80.86")
+	if($_SERVER['REMOTE_ADDR'] == "109.238.80.73")
 	{
 		$trace = debug_backtrace();
 		echo '<div style="display: block; position: relative; background-color: #ffffff; border: 1px solid #000000; padding: 5px; margin: 0;">';
